@@ -7,7 +7,7 @@ npm install express mongoose bcryptjs jsonwebtoken cors helmet express-rate-limi
 docker run -d -p 27017:27017 --name mongodb mongo:latest
 
 ---
-## Or install MongoDB locally 
+## Or install MongoDB locally \
 https://docs.mongodb.com/manual/installation/
 ---
 # set environment variables (optional .env file)
