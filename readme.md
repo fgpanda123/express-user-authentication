@@ -56,6 +56,7 @@
     -H "Authorization: Bearer YOUR_JWT_TOKEN"
 
 # 👤 Enhanced User Profile Schema
+
 ## Personal Information
 
 firstName, lastName, displayName 
@@ -80,8 +81,8 @@ skills array (up to 20 skills)
 
 ## Privacy Settings
 
-profileVisibility (public/private/friends-only) \
-Control visibility of email, phone, and address
+* profileVisibility (public/private/friends-only)
+*  (Control visibility of email, phone, and address
 ---
 # 🔐 New API Endpoints
 ## Profile Management
