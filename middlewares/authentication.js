@@ -1,7 +1,7 @@
 // Middleware to verify JWT token
-import * as jwt from "node/crypto";
-import TokenBlacklist from "../models/TokenBlacklist";
-import User from "../models/User";
+const jwt = require('crypto')
+const TokenBlacklist = require("../models/TokenBlacklist");
+const User = require("../models/User");
 
 const authenticateToken = async (req, res, next) => {
     try {
@@ -40,4 +40,4 @@ const authenticateToken = async (req, res, next) => {
     }
 };
 
-module.exports = { authenticateToken };
+module.exports =  authenticateToken ;

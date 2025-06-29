@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-
+const mongoose = require('mongoose');
 const express = require('express');
 const authenticateToken = require("../middlewares/authentication");
 const User = require("../models/User");
@@ -63,4 +62,4 @@ testRouter.get('/health', async (req, res) => {
     }
 });
 
-export default testRouter;
+module.exports = testRouter;

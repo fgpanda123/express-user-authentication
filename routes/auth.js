@@ -4,6 +4,7 @@ const {validatePassword} = require("../input_validation/validate_password");
 const User = require("../models/User");
 const {generateToken, getTokenExpiry} = require("../utilities/tokens");
 const TokenBlacklist = require("../models/TokenBlacklist");
+const rateLimit = require("express-rate-limit");
 const authenticationRouter = express.Router();
 // Auth rate limiting (more restrictive)
 const authLimiter = rateLimit({
@@ -146,4 +147,4 @@ authenticationRouter.post('/api/auth/logout', authenticateToken, async (req, res
     }
 });
 
-export default authenticationRouter;
+module.exports = authenticationRouter;

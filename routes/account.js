@@ -73,4 +73,4 @@ accountRouter.delete('/api/auth/account', authenticateToken, async (req, res) =>
     }
 });
 
-export default accountRouter;
+module.exports = accountRouter;

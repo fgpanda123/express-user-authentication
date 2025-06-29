@@ -84,4 +84,4 @@ searchRouter.get('/api/search/users', async (req, res) => {
     }
 });
 
-export default searchRouter;
+module.exports = searchRouter;

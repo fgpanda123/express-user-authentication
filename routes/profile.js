@@ -198,4 +198,4 @@ profileRouter.put('/api/auth/privacy', authenticateToken, async (req, res) => {
     }
 });
 
-export default profileRouter;
+module.exports = profileRouter;
