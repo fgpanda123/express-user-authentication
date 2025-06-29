@@ -1,5 +1,5 @@
 # setup
-## bash
+    # bash
     npm init -y
     npm install express mongoose bcryptjs jsonwebtoken cors helmet express-rate-limit
 ---
@@ -76,7 +76,7 @@ Automatic validation for proper URLs/usernames
 
 jobTitle, company, industry \
 experience level (entry-level to 10+ years) \
-skills array (up to 20 skills) \
+skills array (up to 20 skills) 
 
 ## Privacy Settings
 
@@ -155,9 +155,9 @@ The search endpoint supports multiple parameters:
             }'
 ---
 # Update Privacy Settings
-    curl -X PUT http://localhost:3000/api/auth/privacy \
-        -H "Authorization: Bearer YOUR_JWT_TOKEN" \
-        -H "Content-Type: application/json" \
+    curl -X PUT http://localhost:3000/api/auth/privacy 
+        -H "Authorization: Bearer YOUR_JWT_TOKEN" 
+        -H "Content-Type: application/json" 
         -d '{
                 "profileVisibility": "public",
                 "showEmail": false,
