@@ -1,5 +1,5 @@
 // Middleware to verify JWT token
-const jwt = require('crypto')
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const TokenBlacklist = require("../models/TokenBlacklist");
 const User = require("../models/User");

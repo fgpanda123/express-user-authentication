@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const authenticateToken = require("../middlewares/authentication");
 const User = require("../models/User");
+const {generateToken} = require("../utilities/tokens");
 const testRouter = express.Router();
 // Get all users (admin-like functionality)
 testRouter.get('/api/users', authenticateToken, async (req, res) => {
@@ -37,6 +38,7 @@ testRouter.get('/api/protected', authenticateToken, (req, res) => {
     res.json({
         message: 'This is a protected route',
         user: req.user,
+        token: req.token,
         timestamp: new Date().toISOString()
     });
 });

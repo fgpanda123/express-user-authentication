@@ -11,7 +11,7 @@ const profileRouter = require('./routes/profile');
 const searchRouter = require('./routes/search');
 const testRouter = require('./routes/test');
 const app = express();
-// Environment variables (in production, use .env file)
+// Environment variables (in production, use .env.txt file)
 const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString('base64');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/express-auth'
 const PORT = process.env.PORT || 3000;
