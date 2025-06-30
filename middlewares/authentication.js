@@ -4,6 +4,13 @@ require('dotenv').config();
 const TokenBlacklist = require("../models/TokenBlacklist");
 const User = require("../models/User");
 
+const requireAdmin = (req, res, next) => {
+    if (req.user.role !== 'admin') {
+        return res.status(403).json({ error: 'Admin access required' });
+    }
+    next();
+};
+
 const authenticateToken = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];

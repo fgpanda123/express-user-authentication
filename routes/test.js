@@ -17,6 +17,8 @@ testRouter.get('/api/users', authenticateToken, async (req, res) => {
             .skip(skip)
             .limit(limit);
 
+        console.log(users);
+
         const total = await User.countDocuments({ isActive: true });
 
         res.json({
@@ -37,7 +39,7 @@ testRouter.get('/api/users', authenticateToken, async (req, res) => {
 testRouter.get('/api/protected', authenticateToken, (req, res) => {
     res.json({
         message: 'This is a protected route',
-        user: req.user,
+        userId: req.user.__id,
         timestamp: new Date().toISOString()
     });
 });
