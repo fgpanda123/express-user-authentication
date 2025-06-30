@@ -10,9 +10,8 @@ const profileRouter = require('./routes/profile');
 const searchRouter = require('./routes/search');
 const testRouter = require('./routes/test');
 const app = express();
-
 // Environment variables (in production, use .env file)
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || '3ab8ed4e0f0399dd88b15cfdf4ba224ec8038570224dba3966bfa5e7d0b3ec71'
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://peterwu91695:poEQxY5kUkKGbi3M@cluster0.psudhu3.mongodb.net/myDatabase?retryWrites=true&w=majority&appName=Cluster0';
 const PORT = process.env.PORT || 3000;
 
@@ -54,6 +53,7 @@ process.on('SIGINT', async () => {
 app.use(helmet());
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -70,12 +70,21 @@ app.use('/', authenticationRouter);
 app.use('/', profileRouter);
 app.use('/', searchRouter);
 app.use('/', testRouter);
+app.get('/', (req, res) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+    res.json({
+        authHeader,
+        token
+    })
 
-// 404 handler
-app.use('*', (req, res) => {
-    res.status(404).json({ error: 'Route not found' });
 });
 
+// 404 handler
+/* app.use('*', (req, res) => {
+    res.status(404).json({ error: 'Route not found' });
+});
+*/
 // Global error handler
 app.use((err, req, res, next) => {
     console.error('Global error:', err);
@@ -90,5 +99,6 @@ app.listen(PORT, () => {
     console.log(`Health check: http://localhost:${PORT}/health`);
     console.log(`MongoDB URI: ${MONGODB_URI}`);
 });
-
-module.exports = app;
+module.exports.JWT_SECRET = JWT_SECRET;
+module.exports.MONGODB_URI = MONGODB_URI;
+module.exports.app = app;

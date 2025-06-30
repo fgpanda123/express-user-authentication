@@ -5,6 +5,7 @@ const User = require("../models/User");
 const {generateToken, getTokenExpiry} = require("../utilities/tokens");
 const TokenBlacklist = require("../models/TokenBlacklist");
 const rateLimit = require("express-rate-limit");
+const {JWT_SECRET} = require("../app");
 const authenticationRouter = express.Router();
 // Auth rate limiting (more restrictive)
 const authLimiter = rateLimit({
@@ -14,7 +15,7 @@ const authLimiter = rateLimit({
 
 authenticationRouter.post('/api/auth/register', authLimiter, async (req, res) => {
     try {
-        const { email, password, name } = req.body;
+        const { name, email, password } = req.body;
 
         // Validation
         if (!email || !password || !name) {
