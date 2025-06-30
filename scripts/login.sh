@@ -1,7 +1,14 @@
-token=$(curl -X POST http://localhost:3000/api/auth/login \
+response=$(curl -X POST http://localhost:3000/api/auth/login \
 -H "Content-Type: application/json" \
--d '{"email":"john@example.com","password":"Password123"}' \
-| jq -r '.token')
+-d '{"email":"john@example.com","password":"Password123"}')
+
+response_body=$(echo "$response" | sed -n '/^\r*$/,$p' | tail -n +2)
+echo "$response_body"
+echo "$response"
+token=$(${response} | jq -r '.token')
+profile=$(echo "$response" | jq '.user' )
+echo "$profile"
+
 
 update_env_var() {
     local var_name="$1"
@@ -20,5 +27,6 @@ update_env_var() {
 }
 
 update_env_var "TOKEN" "$token"
+update_env_var "PROFILE" "$profile"
 
 
