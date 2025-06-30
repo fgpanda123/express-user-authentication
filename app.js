@@ -1,4 +1,5 @@
 const express = require('express');
+const crypto = require("crypto");
 const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -11,8 +12,8 @@ const searchRouter = require('./routes/search');
 const testRouter = require('./routes/test');
 const app = express();
 // Environment variables (in production, use .env file)
-const JWT_SECRET = process.env.JWT_SECRET || '3ab8ed4e0f0399dd88b15cfdf4ba224ec8038570224dba3966bfa5e7d0b3ec71'
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://peterwu91695:poEQxY5kUkKGbi3M@cluster0.psudhu3.mongodb.net/myDatabase?retryWrites=true&w=majority&appName=Cluster0';
+const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString('base64');
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/express-auth'
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection

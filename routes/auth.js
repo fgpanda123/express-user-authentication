@@ -5,7 +5,6 @@ const User = require("../models/User");
 const {generateToken, getTokenExpiry} = require("../utilities/tokens");
 const TokenBlacklist = require("../models/TokenBlacklist");
 const rateLimit = require("express-rate-limit");
-const {JWT_SECRET} = require("../app");
 const authenticationRouter = express.Router();
 // Auth rate limiting (more restrictive)
 const authLimiter = rateLimit({
