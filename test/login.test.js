@@ -1,18 +1,24 @@
 const request = require('supertest');
-const app = require('../app')
+const {describe, it} = require("node:test");
+const app = require('../app').app;
+let token;
 const test_case1 = {
       data: {"email":"john@example.com","password":"Password123"},
-      expected: ["professional", "privacy", "_id", "name", "email", "isActive", "isEmailVerified", "isPhoneVerified", "createdAt", "updatedAt", "last_login"]}
+      expected: ["__v", "_id","professional", "privacy", "name", "email", "isActive", "isEmailVerified", "isPhoneVerified", "createdAt", "updatedAt", "lastLogin"]}
 
-describe('POST /login', () => {
+describe('POST /api/auth/login', async () => {
     it("should respond with 200 and json file containing profile information", async () => {
-        const response = await request(app)
-        .post('/login')
-        .send(data)
-        .expect('Content-Type', /json/)
-        .expect(200);
-    expect(Object.keys(response.body)).toHaveProperty('user')
-    expect(Object.keys(response.body.user).sort()).toEqual(expectedKeys.sort());
+        return request(app)
+            .post('/api/auth/login')
+            .send(test_case1.data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', 'application/json; charset=utf-8')
+            .expect(200)
+            .then(async (res) => {
+                expect(Object.keys(res.body.user).sort()).toEqual(test_case1.expected.sort())
+                token = res.body.token;
+            })
+
 
     })
 })
