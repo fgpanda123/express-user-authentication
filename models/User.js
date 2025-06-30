@@ -1,5 +1,6 @@
 // User Schema
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
     // Basic Authentication Fields
@@ -12,6 +13,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
+        index: true,
         required: [true, 'Email is required'],
         unique: true,
         lowercase: true,
