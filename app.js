@@ -17,10 +17,7 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/expres
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection
-mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(MONGODB_URI)
     .then(() => {
         console.log('Connected to MongoDB');
     })

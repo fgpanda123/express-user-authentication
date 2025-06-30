@@ -13,8 +13,8 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        index: true,
         required: [true, 'Email is required'],
+        index: true,
         unique: true,
         lowercase: true,
         trim: true,
@@ -244,7 +244,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // Index for better query performance
-userSchema.index({ email: 1 });
+// userSchema.index({ email: 1 });
 userSchema.index({ createdAt: -1 });
 
 // Virtual for checking if account is locked
