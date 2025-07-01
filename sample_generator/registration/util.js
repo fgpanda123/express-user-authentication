@@ -1,5 +1,4 @@
-// Sample Data Generator for User Schema
-
+// Sample Data Generator for User Registration
 
 class UserSampleGenerator {
     constructor() {
