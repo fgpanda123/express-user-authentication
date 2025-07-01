@@ -51,12 +51,41 @@ class UserSampleGenerator {
 
     // Generate a password (minimum 8 characters)
     generatePassword() {
+        function containsUppercase(str) {
+            return /[A-Z]/.test(str);
+        }
+        function containsLowerCase(str) {
+            return /[a-z]/.test(str);
+        }
+
+        function containsNumeric(str) {
+            return /[0-9]/.test(str);
+        }
+
+        function containsSpecial(str) {
+            return /[!@#$%^&*]/.test(str);
+        }
         const length = this.getRandomNumber(8, 16);
+        const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+        const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const special = '!@#$%^&*'
+        const numbers = '0123456789'
         const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
         let password = '';
 
         for (let i = 0; i < length; i++) {
             password += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+        switch (password) {
+            case !containsUppercase(password):
+                password[Math.floor(Math.random() * password.length)] = uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+            case !containsNumeric(password):
+                password[Math.floor(Math.random() * password.length)] = numbers.charAt(Math.floor(Math.random() * numbers.length));
+            case !containsLowerCase(password):
+                password[Math.floor(Math.random() * password.length)] = lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+            case !containsSpecial(password):
+                password[Math.floor(Math.random() * password.length)] = special.charAt(Math.floor(Math.random() * special.length));
+
         }
 
         return password;
