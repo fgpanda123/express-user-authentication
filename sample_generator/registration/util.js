@@ -77,26 +77,26 @@ class UserSampleGenerator {
         for (let i = 0; i < length; i++) {
             password += charset.charAt(Math.floor(Math.random() * charset.length));
         }
-
-        switch (password) {
-            case !containsUppercase(password):
+            if (!containsUppercase(password)) {
                 randomChar = uppercase.charAt(Math.floor(Math.random() * uppercase.length));
                 insertPosition = Math.floor(Math.random() * (password.length + 1));
                 password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
-            case !containsNumeric(password):
+            }
+            if (!containsNumeric(password)) {
                 randomChar = numbers.charAt(Math.floor(Math.random() * numbers.length));
                 insertPosition = Math.floor(Math.random() * (password.length + 1));
                 password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
-            case !containsLowerCase(password):
+            }
+            if (!containsLowerCase(password)) {
                 randomChar = lowercase.charAt(Math.floor(Math.random() * lowercase.length));
                 insertPosition = Math.floor(Math.random() * (password.length + 1));
                 password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
-            case !containsSpecial(password):
+            }
+            if (!containsSpecial(password)) {
                 randomChar = special.charAt(Math.floor(Math.random() * special.length));
                 insertPosition = Math.floor(Math.random() * (password.length + 1));
                 password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
-
-        }
+            }
 
         return password;
     }
