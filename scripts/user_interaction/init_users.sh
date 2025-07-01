@@ -4,7 +4,7 @@
 URL="http://localhost:3000/api/auth/register"
 
 # Define the path to your JSON file containing the data
-JSON_FILE="../samples/users/sample-users.json"
+JSON_FILE="../sample_generator/registration/samples/sample-users.json"
 
 # Read the JSON file and parse it using jq
 # This example assumes a JSON array of objects, where each object
