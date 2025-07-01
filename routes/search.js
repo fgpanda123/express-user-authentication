@@ -1,10 +1,7 @@
 const express = require('express');
-const authenticateToken = require("../middlewares/authentication");
-const {validatePassword} = require("../input_validation/validate_password");
 const User = require("../models/User");
-const {generateToken, getTokenExpiry} = require("../utilities/tokens");
-const TokenBlacklist = require("../models/TokenBlacklist");
 const searchRouter = express.Router();
+const mongoose = require("mongoose");
 
 // Get public profile by user ID
 searchRouter.get('/api/profile/:id', async (req, res) => {

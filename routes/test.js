@@ -17,8 +17,6 @@ testRouter.get('/api/users', authenticateToken, async (req, res) => {
             .skip(skip)
             .limit(limit);
 
-        console.log(users);
-
         const total = await User.countDocuments({ isActive: true });
 
         res.json({

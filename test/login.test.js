@@ -1,5 +1,4 @@
 const request = require('supertest');
-const jwt = require('jsonwebtoken');
 const {describe, it} = require("node:test");
 const app = require('../app').app;
 let token;
@@ -22,3 +21,5 @@ describe('POST /api/auth/login', async () => {
 
     })
 })
+
+
