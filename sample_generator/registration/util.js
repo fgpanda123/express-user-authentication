@@ -72,19 +72,29 @@ class UserSampleGenerator {
         const numbers = '0123456789'
         const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
         let password = '';
-
+        let insertPosition;
+        let randomChar;
         for (let i = 0; i < length; i++) {
             password += charset.charAt(Math.floor(Math.random() * charset.length));
         }
+
         switch (password) {
             case !containsUppercase(password):
-                password[Math.floor(Math.random() * password.length)] = uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+                randomChar = uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+                insertPosition = Math.floor(Math.random() * (password.length + 1));
+                password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
             case !containsNumeric(password):
-                password[Math.floor(Math.random() * password.length)] = numbers.charAt(Math.floor(Math.random() * numbers.length));
+                randomChar = numbers.charAt(Math.floor(Math.random() * numbers.length));
+                insertPosition = Math.floor(Math.random() * (password.length + 1));
+                password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
             case !containsLowerCase(password):
-                password[Math.floor(Math.random() * password.length)] = lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+                randomChar = lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+                insertPosition = Math.floor(Math.random() * (password.length + 1));
+                password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
             case !containsSpecial(password):
-                password[Math.floor(Math.random() * password.length)] = special.charAt(Math.floor(Math.random() * special.length));
+                randomChar = special.charAt(Math.floor(Math.random() * special.length));
+                insertPosition = Math.floor(Math.random() * (password.length + 1));
+                password = password.substring(0, insertPosition) + randomChar + password.substring(insertPosition,password.length);
 
         }
 
